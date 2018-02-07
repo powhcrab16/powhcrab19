@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  
+<!-- Mirrored from etherhell.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Feb 2018 13:05:15 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="images/fire-emoji.png">
+    <link rel="stylesheet" href="vendor/bootstrap.min.css">
+    <title>Ether Hell</title>
+    <style>
+      .background {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("images/fire.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: -1;
+      }
+      .container {
+        max-width: 800px;
+      }
+      .tooltip-inner {
+        max-width: 100%;
+      }
+      .bg-dark-transparent {
+        background: rgba(0,0,0,0.5);
+      }
+      .bg-red-transparent {
+        background: rgba(255,0,0,0.5);
+      }
+      .headline {
+        font-size: 1.3rem;
+      }
+      .block-header {
+        font-size: 2.75rem;
+        font-weight: 300;
+      }
+      .data-value {
+        font-size: 2rem;
+        font-weight: 300;
+      }
+      .data-value-small {
+        font-size: 1.6rem;
+        font-weight: 300;
+      }
+    </style>
+  </head>
+  <body class="bg-dark">
+    <div class="background"></div>
+    <nav id="navbar" class="navbar navbar-expand navbar-dark bg-dark-transparent">
+      <div class="container px-3" style="max-width: 800px">
+      <span class="navbar-brand">&#x1F525; Ether Hell</span>
+      <div class="navbar-nav ml-auto">
+	<a class="nav-item nav-link" href="https://etherscan.io/address/0x9712fa4faf0720b55741dacfe16de3787fa46348">Smart Contract</a>
+	<a class="nav-item nav-link" href="https://discord.gg/2FKwRYQ">Discord</a>
+      </div>
+      </div>
+    </nav>
+    <main class="container text-white">
+	    <div class="col-4 text-right pr-0">Time remaining:</div>
+	    <div id="time-remaining" class="col data-value">Loading...</div>
+		<div class="col-3 text-right"><button id="btn-withdraw" class="btn btn-outline-light" disabled>Withdraw</button></div>
+
+    </main>
+    <script src="vendor/jquery-3.3.1.min.js"></script>
+    <script src="vendor/popper.min.js"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+    <script src="vendor/web3.min.js"></script>
+    <script src="maintest.js"></script>
+  </body>
+
+</html>
