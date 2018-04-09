@@ -54,7 +54,7 @@
       <div class="container px-3">
       <span class="navbar-brand">&#x1F525; Ether Test Deluxe</span>
       <div class="navbar-nav ml-auto">
-	<a class="nav-item nav-link" href="https://ropsten.etherscan.io/address/0x1895e2f42176341e0fa8d744c7ad218b13161780
+	<a class="nav-item nav-link" href="https://ropsten.etherscan.io/address/0x4820092FD8A202b43750597366476C3903c08217
 ">Contract</a>
 	<a class="nav-item nav-link" href="https://www.reddit.com/r/etherhell/">Reddit</a>
 	<a class="nav-item nav-link" href="https://discord.gg/2FKwRYQ">Discord</a>
@@ -168,47 +168,6 @@
       </div>
       <div class="text-center my-3 px-3 border rounded bg-dark-transparent">
 	<div class="block-header border-bottom">About</div>
-	<div class="row my-3">
-	  <div class="col-6">
-	    <div class="h4">How does this game work?</div>
-	    <div>When you place a bid, you become the new leader and the countdown resets. Your bid contributes to the pot. When the timer runs out, the final leader receives half the pot as earnings, and a new round begins with the remainder as the initial pot.</div>
-	  </div>
-	  <div class="col-6">
-	    <div class="h4">Is this secure?</div>
-	    <div>Yes, our code has been audited and tested to ensure that money flows from bidders to winners as intended. There are no backdoors, self-destruct functions, or other mechanisms for foul play. We encourage you to read the <a href="https://ropsten.etherscan.io/address/0x1895e2f42176341e0fa8d744c7ad218b13161780">smart contract source</a> to verify.</div>
-	  </div>
-	</div>
-	<div class="row my-3">
-	  <div class="col-6">
-	    <div class="h4">How long is the countdown?</div>
-	    <div>By default, the timer resets and begins counting down from 90 minutes whenever a new bid arrives. However, the duration is reduced by 2 minutes for each ether in the pot, down to a minimum of 30 minutes.</div>
-	  </div>
-	  <div class="col-6">
-	    <div class="h4">What is the minimum bid?</div>
-	    <div>You must bid at least 0.5% of the current pot to become the new leader. If your bid is too low, it will still feed into the pot but you will not become the leader. After a round has ended, a bid of any value will start the next round.</div>
-	  </div>
-	</div>
-	<div class="row my-3">
-	  <div class="col-6">
-	    <div class="h4">How do dividends work?</div>
-	    <div>20% of every bid is put into a dividend fund that rewards investors. Each time you place a minimum bid, you receive a new share of the dividend fund. Since the minimum buy-in increases over time, later bidders will contribute more to the fund per share than you did, meaning your shares will increase in value and you'll earn money on every payment to the contract.</div>
-	  </div>
-	  <div class="col-6">
-	    <div class="h4">Why place larger bids?</div>
-	    <div>If you'd like a large stake in the dividend fund, you can acquire N shares at once at a fixed price by placing a bid of N times the minimum. This can be much more cost effective than acquiring shares over many bids, since the share price will only increase over time as the pot grows larger. Note that if you place a non-integer multiple of the minimum bid, fractional shares will not awarded.</div>
-	  </div>
-	</div>
-	<div class="row my-3">
-	  <div class="col-6">
-	    <div class="h4">How is this self-sustaining?</div>
-	    <div>Half of the previous round's pot is used as initial funding for the next round's pot. Even if there were only a few interested parties, it would take months or possibly years of persistent daily bidding to fully drain the pot. As long as there is interest and the Ethereum network is alive, prizes will continue to be paid out on a regular basis.</div>
-	  </div>
-	  <div class="col-6">
-	    <div class="h4">How do I collect my earnings?</div>
-	    <div>When you click on the withdraw button, you'll initiate a special 0 ETH transaction that will call the contract's earnings withdrawal function and transfer your earnings to your address. Note that earnings from the current round will not appear in the display before the next round has started, but they will still be accounted for in a withdrawal.</div>
-	  </div>
-	</div>
-	<div class="row my-3">
 	  <div class="col-6">
 	    <div class="h4">How do I collect my dividends?</div>
 	    <div>Dividends can be collected at any time by clicking on the withdraw button in the dividends section. The mechanism is the same as the one for withdrawing earnings.</div>
@@ -224,6 +183,6 @@
     <script src="vendor/popper.min.js"></script>
     <script src="vendor/bootstrap.min.js"></script>
     <script src="vendor/web3.min.js"></script>
-    <script src="main-test1.js"></script>
+    <script src="main-deluxe.js"></script>
   </body>
 </html>
