@@ -203,9 +203,9 @@ window.addEventListener("load", function() {
         web3 = new Web3(web3.currentProvider);
         web3.version.getNetwork(function(error, result) {
             if (!error) {
-                if (result == "1") {
+                //if (result == "1") {
                     setup(true);
-                } else {
+                /*} else {
                     $("#error").text("Error: you must be on the Main Ethereum Network to use this website.");
                     $("#error").toggle(true);
                     $("#round").text("??");
@@ -217,7 +217,7 @@ window.addEventListener("load", function() {
 		    $("#dividend-shares").text(failureText);
 		    $("#total-dividend-shares").text(failureText);
 		    $("#dividends").text(failureText);
-		    $("#dividend-fund").text(failureText);
+		    $("#dividend-fund").text(failureText);*/
                 }
             }
         });
