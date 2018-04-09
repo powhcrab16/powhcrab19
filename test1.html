@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="images/fire-emoji.png">
+    <link rel="stylesheet" href="vendor/bootstrap.min.css">
+    <title>Ether Hell</title>
+    <style>
+      .background {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("images/fire.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: -1;
+      }
+      .container {
+        max-width: 800px;
+      }
+      .tooltip-inner {
+        max-width: 100%;
+      }
+      .bg-dark-transparent {
+        background: rgba(0,0,0,0.5);
+      }
+      .bg-red-transparent {
+        background: rgba(255,0,0,0.5);
+      }
+      .headline {
+        font-size: 1.3rem;
+      }
+      .block-header {
+        font-size: 2.75rem;
+        font-weight: 300;
+      }
+      .data-value {
+        font-size: 2rem;
+        font-weight: 300;
+      }
+      .data-value-small {
+        font-size: 1.6rem;
+        font-weight: 300;
+      }
+    </style>
+  </head>
+  <body class="bg-dark">
+    <div class="background"></div>
+    <nav id="navbar" class="navbar navbar-expand navbar-dark bg-dark-transparent">
+      <div class="container px-3">
+      <span class="navbar-brand">&#x1F525; Ether Test Deluxe</span>
+      <div class="navbar-nav ml-auto">
+	<a class="nav-item nav-link" href="https://ropsten.etherscan.io/address/0x1895e2f42176341e0fa8d744c7ad218b13161780
+">Contract</a>
+	<a class="nav-item nav-link" href="https://www.reddit.com/r/etherhell/">Reddit</a>
+	<a class="nav-item nav-link" href="https://discord.gg/2FKwRYQ">Discord</a>
+      </div>
+      </div>
+    </nav>
+    <main class="container text-white">
+      <div class="my-3 px-3 border rounded bg-dark-transparent">
+	<div class="headline text-center border-bottom py-2">Ether Test Deluxe: a newer, better self-sustaining reverse Ponzi scheme.</div>
+	<div class="d-flex justify-content-center align-items-center my-2">
+	  <div class="badge badge-pill badge-success mr-2">Quick Start</div>
+	  <div class="d-flex flex-column small">
+	    <div>1. When you make a bid, you become the leader and the timer resets.</div>
+	    <div>2. Your bid also gives you shares in a dividend fund so you can earn while you play.</div>
+	    <div>3. When the timer runs out, the last bidder earns half the pot and a new round begins.</div>
+	  </div>
+	</div>
+      </div>
+      <div id="error" class="my-3 py-2 text-center border rounded bg-red-transparent" style="display: none"></div>
+      <div class="my-3 px-3 border rounded bg-dark-transparent">
+	<div class="text-center block-header border-bottom">Round <span id="round"></span></div>
+	<div class="my-2">
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Current pot:</div>
+	    <div class="col data-value">
+	      <span id="pot" data-toggle="tooltip" data-placement="top">Loading...</span>
+	      <span id="pot-usd" class="data-value-small"></span>
+	    </div>
+	  </div>
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Current leader:</div>
+	    <div id="leader" class="col data-value">Loading...</div>
+	  </div>
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Time remaining:</div>
+	    <div id="time-remaining" class="col data-value">Loading...</div>
+	  </div>
+	</div>
+      </div>
+      <div class="my-3 px-3 border rounded bg-dark-transparent">
+	<div class="text-center block-header border-bottom">Bidding</div>
+	<div class="my-2">
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Minimum bid:</div>
+	    <div class="col data-value">
+	      <span id="minimum-bid" data-toggle="tooltip" data-placement="top">Loading...</span>
+	      <span id="minimum-bid-usd" class="data-value-small"></span>
+	    </div>
+	    <div class="col-4 text-right">
+	      <button id="btn-minimum-bid" class="btn btn-outline-light" disabled>Place bid</button>
+	    </div>
+	  </div>
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Multiple of minimum bid:</div>
+	    <div class="col-3 form-inline pr-0">
+	      <div class="input-group">
+		<input id="multiple-of-minimum-bid" class="form-control" />
+		<div class="input-group-append">
+		  <div class="input-group-text">* minimum</div>
+		</div>
+	      </div>
+	    </div>
+	    <div class="col-1"></div>
+	    <div class="col-4 text-right"><button id="btn-multiple-of-minimum-bid" class="btn btn-outline-light" disabled>Place bid</button></div>
+	  </div>
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Custom bid:</div>
+	    <div class="col pr-0"><input id="custom-bid" class="form-control" disabled /></div>
+	    <div class="col-1 data-value px-0">&nbsp;ETH</div>
+	    <div class="col-4 text-right"><button id="btn-custom-bid" class="btn btn-outline-light" disabled>Place bid</button></div>
+	  </div>
+	</div>
+      </div>
+      <div class="my-3 px-3 border rounded bg-dark-transparent">
+	<div class="text-center block-header border-bottom">Earnings</div>
+	<div class="my-2">
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Your earnings:</div>
+	    <div class="col data-value">
+	      <span id="earnings" data-toggle="tooltip" data-placement="top">Loading...</span>
+	      <span id="earnings-usd" class="data-value-small"></span>
+	    </div>
+	    <div class="col-4 text-right"><button id="btn-withdraw-earnings" class="btn btn-outline-light" disabled>Withdraw</button></div>
+	  </div>
+	</div>
+      </div>
+      <div class="my-3 px-3 border rounded bg-dark-transparent">
+	<div class="text-center block-header border-bottom">Dividends</div>
+	<div class="my-2">
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Your dividend shares:</div>
+	    <div id="dividend-shares" class="col data-value">Loading...</div>
+	  </div>
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Total dividend shares:</div>
+	    <div id="total-dividend-shares" class="col data-value">Loading...</div>
+	  </div>
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Your dividends:</div>
+	    <div class="col data-value">
+	      <span id="dividends" data-toggle="tooltip" data-placement="top">Loading...</span>
+	      <span id="dividends-usd" class="data-value-small"></span>
+	    </div>
+	    <div class="col-4 text-right"><button id="btn-withdraw-dividends" class="btn btn-outline-light" disabled>Withdraw</button></div>
+	  </div>
+	  <div class="row align-items-center">
+	    <div class="col-4 text-right pr-0">Total dividend fund:</div>
+	    <div id="dividend-fund" class="col data-value">Loading...</div>
+	  </div>
+	</div>
+      </div>
+      <div class="text-center my-3 px-3 border rounded bg-dark-transparent">
+	<div class="block-header border-bottom">About</div>
+	<div class="row my-3">
+	  <div class="col-6">
+	    <div class="h4">How does this game work?</div>
+	    <div>When you place a bid, you become the new leader and the countdown resets. Your bid contributes to the pot. When the timer runs out, the final leader receives half the pot as earnings, and a new round begins with the remainder as the initial pot.</div>
+	  </div>
+	  <div class="col-6">
+	    <div class="h4">Is this secure?</div>
+	    <div>Yes, our code has been audited and tested to ensure that money flows from bidders to winners as intended. There are no backdoors, self-destruct functions, or other mechanisms for foul play. We encourage you to read the <a href="https://ropsten.etherscan.io/address/0x1895e2f42176341e0fa8d744c7ad218b13161780">smart contract source</a> to verify.</div>
+	  </div>
+	</div>
+	<div class="row my-3">
+	  <div class="col-6">
+	    <div class="h4">How long is the countdown?</div>
+	    <div>By default, the timer resets and begins counting down from 90 minutes whenever a new bid arrives. However, the duration is reduced by 2 minutes for each ether in the pot, down to a minimum of 30 minutes.</div>
+	  </div>
+	  <div class="col-6">
+	    <div class="h4">What is the minimum bid?</div>
+	    <div>You must bid at least 0.5% of the current pot to become the new leader. If your bid is too low, it will still feed into the pot but you will not become the leader. After a round has ended, a bid of any value will start the next round.</div>
+	  </div>
+	</div>
+	<div class="row my-3">
+	  <div class="col-6">
+	    <div class="h4">How do dividends work?</div>
+	    <div>20% of every bid is put into a dividend fund that rewards investors. Each time you place a minimum bid, you receive a new share of the dividend fund. Since the minimum buy-in increases over time, later bidders will contribute more to the fund per share than you did, meaning your shares will increase in value and you'll earn money on every payment to the contract.</div>
+	  </div>
+	  <div class="col-6">
+	    <div class="h4">Why place larger bids?</div>
+	    <div>If you'd like a large stake in the dividend fund, you can acquire N shares at once at a fixed price by placing a bid of N times the minimum. This can be much more cost effective than acquiring shares over many bids, since the share price will only increase over time as the pot grows larger. Note that if you place a non-integer multiple of the minimum bid, fractional shares will not awarded.</div>
+	  </div>
+	</div>
+	<div class="row my-3">
+	  <div class="col-6">
+	    <div class="h4">How is this self-sustaining?</div>
+	    <div>Half of the previous round's pot is used as initial funding for the next round's pot. Even if there were only a few interested parties, it would take months or possibly years of persistent daily bidding to fully drain the pot. As long as there is interest and the Ethereum network is alive, prizes will continue to be paid out on a regular basis.</div>
+	  </div>
+	  <div class="col-6">
+	    <div class="h4">How do I collect my earnings?</div>
+	    <div>When you click on the withdraw button, you'll initiate a special 0 ETH transaction that will call the contract's earnings withdrawal function and transfer your earnings to your address. Note that earnings from the current round will not appear in the display before the next round has started, but they will still be accounted for in a withdrawal.</div>
+	  </div>
+	</div>
+	<div class="row my-3">
+	  <div class="col-6">
+	    <div class="h4">How do I collect my dividends?</div>
+	    <div>Dividends can be collected at any time by clicking on the withdraw button in the dividends section. The mechanism is the same as the one for withdrawing earnings.</div>
+	  </div>
+	  <div class="col-6">
+	    <div class="h4">How are bids allocated?</div>
+	    <div>When the contract receives a bid, 75% goes into the pot, 20% goes into the dividend fund, and 5% is set aside to provide seed funding for future Ether Hell projects.</div>
+	  </div>
+	</div>
+      </div>
+    </main>
+    <script src="vendor/jquery-3.3.1.min.js"></script>
+    <script src="vendor/popper.min.js"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+    <script src="vendor/web3.min.js"></script>
+    <script src="main-test1.js"></script>
+  </body>
+</html>
