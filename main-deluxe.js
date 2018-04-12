@@ -200,7 +200,7 @@ function setup(hasAccount) {
 window.addEventListener("load", function() {
     var failureText = "Cannot load";
     if (typeof web3 !== "undefined") {
-        web3 = new Web3(web3.currentProvider);
+        web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/"));
         web3.version.getNetwork(function(error, result) {
             if (!error) {
                 //if (result == "1") {
@@ -227,7 +227,7 @@ window.addEventListener("load", function() {
         $("#earnings").text(failureText);
 	$("#dividend-shares").text(failureText);
 	$("#dividends").text(failureText);
-        web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/2tXmBfvMC1sfg10iQAm4"));
+        web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/"));
         setup(false);
     }
 });
