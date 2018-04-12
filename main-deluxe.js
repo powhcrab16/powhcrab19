@@ -203,9 +203,9 @@ window.addEventListener("load", function() {
         web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/"));
         web3.version.getNetwork(function(error, result) {
             if (!error) {
-                //if (result == "1") {
+                if (result == "1") {
                     setup(true);
-                /*} else {
+                } else {
                     $("#error").text("Error: you must be on the Main Ethereum Network to use this website.");
                     $("#error").toggle(true);
                     $("#round").text("??");
